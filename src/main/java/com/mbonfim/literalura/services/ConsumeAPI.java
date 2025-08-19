@@ -9,21 +9,30 @@ import java.net.http.HttpResponse;
 public class ConsumeAPI {
 
     public String getData(String address) {
-        HttpClient client = HttpClient.newHttpClient();
+        HttpClient client = HttpClient.newBuilder()
+                .followRedirects(HttpClient.Redirect.NORMAL)
+                .build();
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(address))
                 .build();
-        HttpResponse<String> response = null;
+
+        String json = "{}";
+        HttpResponse<String> response;
         try {
             response = client
                     .send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 200) {
+                json = response.body();
+            } else {
+                throw new RuntimeException("Failed to fetch data. HTTP Status Code: %s".formatted(response.statusCode()));
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        String json = response.body();
         return json;
     }
 }
