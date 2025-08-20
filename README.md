@@ -1,6 +1,8 @@
 # Challenge Literalura
 Challenge Literalura, parte do programa ONE da Oracle em parceria com a Alura
 
+![Insignia do Desafio](src/main/resources/Badge-Literalura.png)
+
 ---
 
 ## Sobre o projeto
