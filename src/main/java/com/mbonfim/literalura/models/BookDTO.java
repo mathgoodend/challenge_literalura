@@ -8,7 +8,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record BookDTO(@JsonAlias("title") String title,
                       @JsonAlias("download_count") Double downloadCount,
-                      @JsonAlias("languages") List<String> language,
+                      @JsonAlias("languages") List<String> languages,
                       @JsonAlias("authors") List<AuthorDTO> authors) {
     @Override
     public String toString() {
@@ -18,7 +18,7 @@ public record BookDTO(@JsonAlias("title") String title,
         for (AuthorDTO author : authors) {
             sb.append("  - ").append(author.name()).append("\n");
         }
-        sb.append("Language(s): ").append(String.join(", ", language)).append("\n");
+        sb.append("Language(s): ").append(String.join(", ", languages)).append("\n");
         sb.append("Downloads: ").append(downloadCount).append("\n");
         sb.append("----------------------------------------");
         return sb.toString();

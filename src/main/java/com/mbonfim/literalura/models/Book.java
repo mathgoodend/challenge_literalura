@@ -87,7 +87,7 @@ public class Book {
         this.title = bookDTO.title();
         Author author = new Author(bookDTO.authors().get(0));
         this.author = author;
-        this.language = bookDTO.langauges().get(0);
+        this.language = bookDTO.languages().get(0);
         this.downloadCount = bookDTO.downloadCount();
     }
 
